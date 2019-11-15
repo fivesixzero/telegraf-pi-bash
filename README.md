@@ -94,19 +94,6 @@ The throttle flags are reported by `vcgencmd` as a 20-bit hex number that provid
 Most of the documentation I found via Googling appeared to be out of date or incorrect. Based on testing, this is the value map I've come up with.
 
 ```txt
-0: soft temperature reached since last reboot
-1: arm frequency capped has occurred since boot
-2: throttling has occurred since boot
-3: under-voltage has occurred since last reboot
-16: soft temp limit reached
-17: under-voltage
-18: arm frequency capped
-19: currently throttled
-
-Example: 0x5005
-
-* Under-voltage & Throttle
-
 Since Boot          Now
  |                   |  
 0101 0000 0000 0000 0101‬
@@ -129,3 +116,10 @@ Since Boot          Now
 <https://github.com/raspberrypi/linux/commit/fe7f80496fa5ae525f4153c94cedee05f1656ee9>
 <https://github.com/raspberrypi/linux/blob/e2d2941326922b63d722ebc46520c3a2287b675f/drivers/hwmon/raspberrypi-hwmon.c>
 <https://github.com/raspberrypi/linux/issues/2367#issuecomment-364178453>
+
+## TODOs and Ideas
+
+* Write a proper Golang plugin for Telegraf
+  * Identify and document hardware monitoring related mailboxes for direct access
+  * Find or write a Go library for reading data via mailboxes
+* Move from `vcgencmd` to using `sysfs` across as many items as possible
