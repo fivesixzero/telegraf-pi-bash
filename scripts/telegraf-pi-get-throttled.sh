@@ -32,14 +32,14 @@ throttle_state_hex=$(sudo /opt/vc/bin/vcgencmd get_throttled | sed -e 's/.*=0x\(
 
 get_base_conversion () {
   args=${1}i${2}o${3}p
-  binary=dc -e $args
+  binary=$(dc -e $args)
   printf %020d $binary
 }
 
 throttle_state_bin=$(get_base_conversion 16 2 $throttle_state_hex)
 
 binpattern="[0-1]{20}"
-if [[ $x =~  ]] {
+if [[ $throttle_state_bin =~ $binpattern ]]; then
 ## Reference: get_throttled bit flags
   # https://github.com/raspberrypi/firmware/commit/404dfef3b364b4533f70659eafdcefa3b68cd7ae#commitcomment-31620480
   #
@@ -67,4 +67,4 @@ if [[ $x =~  ]] {
   tr=${1:19:1}
 
   echo "uv=${uv:-0} uvb=${uvb:-0} afc=${afc:-0} afcb=${afcb:-0} tr=${tr:-0} trb=${trb:-0} str=${str:-0} strb=${strb:-0}"
-}
+fi
