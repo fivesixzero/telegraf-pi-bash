@@ -1,3 +1,3 @@
-Cmnd_Alias RPIDATA = /opt/vc/bin/vcgencmd get_throttled, /opt/vc/bin/vcgencmd measure_temp, /opt/vc/bin/vcgencmd measure_volts *, /opt/vc/bin/vcgencmd measure_clock *
+Cmnd_Alias RPIDATA = /opt/vc/bin/vcgencmd get_throttled, /opt/vc/bin/vcgencmd measure_temp, /opt/vc/bin/vcgencmd measure_volts *, /opt/vc/bin/vcgencmd measure_clock *, /opt/vc/bin/vcgencmd get_mem *
 telegraf ALL=(root) NOEXEC: NOPASSWD: RPIDATA
 Defaults!RPIDATA !logfile, !syslog, !pam_session
