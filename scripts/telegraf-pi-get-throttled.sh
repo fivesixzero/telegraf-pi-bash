@@ -57,14 +57,14 @@ if [[ $throttle_state_bin =~ $binpattern ]]; then
   # ||_ [1] under-voltage has occurred since last reboot
   # |_ [0] soft temperature reached since last reboot
 
-  strb=${1:0:1}
-  uvb=${1:1:1}
-  afcb=${1:2:1}
-  trb=${1:3:1}
-  str=${1:16:1}
-  uv=${1:17:1}
-  afc=${1:18:1}
-  tr=${1:19:1}
+  strb=${throttle_state_bin:0:1}
+  uvb=${throttle_state_bin:1:1}
+  afcb=${throttle_state_bin:2:1}
+  trb=${throttle_state_bin:3:1}
+  str=${throttle_state_bin:16:1}
+  uv=${throttle_state_bin:17:1}
+  afc=${throttle_state_bin:18:1}
+  tr=${throttle_state_bin:19:1}
 
   echo "uv=${uv:-0} uvb=${uvb:-0} afc=${afc:-0} afcb=${afcb:-0} tr=${tr:-0} trb=${trb:-0} str=${str:-0} strb=${strb:-0}"
 fi
