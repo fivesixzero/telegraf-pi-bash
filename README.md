@@ -22,7 +22,17 @@ The script is written for a default Raspbian Buster environment with a few chang
 * `bin` directory for scripts under the Pi user's home directory
   * `/home/pi/bin`
 * `telegraf` installed via `influxdata` repo
-  * <https://docs.influxdata.com/telegraf/v1.12/introduction/installation/>
+  * <https://docs.influxdata.com/telegraf/latest/introduction/installation/>
+ 
+## Warning: Sudoers modification(s)
+
+Running `vcgencmd` as its used in this script will require sudo.
+
+This script, like many that require `telegraf` to run a command requiring `sudo`, will require some editing of the `sudoers` file or and addition to `sudoers.d`. This can cause problems if there are any inconsistencies in the file or if your distro somehow doesn't play nice with the file I've included in this repo. If you're not familiar with editing `sudoers` manually then this might not be the solution you need, although I'd strongly recommend learning about it since its a good skill to have when working with Linux.
+
+If you run into issues or if you're not familiar with using `sudoers.d` the first reply in this issue may be helpful.
+
+<https://github.com/fivesixzero/telegraf-pi-bash/issues/3>
 
 ## Usage
 
