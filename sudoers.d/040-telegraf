@@ -1,3 +1,16 @@
+# sudoers.d entry to allow telegraf to run specific vcgencmd operations as root
+#
+# WARNING: Editing /etc/sudoers or copying a file into /etc/sudoers.d is risky
+#   and can break sudo for all users on the system. Fixing a broken sudoers
+#   file will require using a second pre-existing root shell or editing files
+#   on the RPi's SD card using another Linux system to revert the changes.
+#
+# More info:
+#   https://github.com/fivesixzero/telegraf-pi-bash/issues/3#issuecomment-666862392
+#
+# That said, this file works fine on my Debian Buster-based and Ubuntu systems but
+#   your mileage may vary depending on your distro and your existing sudoers config.
+#
 Cmnd_Alias RPIDATA = /opt/vc/bin/vcgencmd get_throttled, /opt/vc/bin/vcgencmd measure_temp, /opt/vc/bin/vcgencmd measure_volts *, /opt/vc/bin/vcgencmd measure_clock *, /opt/vc/bin/vcgencmd get_mem *
 telegraf ALL=(root) NOEXEC: NOPASSWD: RPIDATA
-Defaults!RPIDATA !logfile, !syslog, !pam_session
+Defaults!RPIDATA !logfile, !syslog, !pam_session, !requiretty
