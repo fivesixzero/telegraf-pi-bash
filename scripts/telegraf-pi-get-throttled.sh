@@ -8,7 +8,7 @@
 
 ### Data Acquisition
 # Poll the VideoCore mailbox using vcgencmd to get the throttle state then use sed to grab just the hex digits
-throttle_state_hex=$(sudo /opt/vc/bin/vcgencmd get_throttled | sed -e 's/.*=0x\([0-9a-fA-F]*\)/\1/')
+throttle_state_hex=$(sudo /opt/vc/bin/vcgencmd get_throttled | sed -e 's/.*=0x\([0-9a-fA-F]*\)/\U\1/')
 
 ### Example vars for testing
 ## Debug: uv=1 uvb=1 afc=0 afcb=0 tr=1 trb=0 str=0 (null) strb=0 (null)
