@@ -33,7 +33,11 @@ throttle_state_hex=$(sudo /opt/vc/bin/vcgencmd get_throttled | sed -e 's/.*=0x\(
 get_base_conversion () {
   args=${1}i${2}o${3}p
   binary=$(dc -e $args)
-  printf %020d $binary
+  if [[ $(echo $binary | wc -c) -le 20 ]]; then
+    printf %020d $binary
+  else
+    printf $binary
+  fi
 }
 
 throttle_state_bin=$(get_base_conversion 16 2 $throttle_state_hex)
@@ -47,7 +51,7 @@ if [[ $throttle_state_bin =~ $binpattern ]]; then
   #
   # Since Boot          Now
   #  |                   |  
-  # 0101 0000 0000 0000 0101‬
+  # 0101 0000 0000 0000 0101
   # ||||                ||||_ [19] throttled
   # ||||                |||_ [18] arm frequency capped
   # ||||                ||_ [17] under-voltage
